@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, {Component} from "react";
 import {
   View,
   Text,
@@ -27,7 +27,7 @@ export default class MeteorScreen extends Component {
         axios.get("http://api.nasa.gov/neo/rest/v1/neo/3542519?api_key=UEG79o7VuN1AvC2nm6N7ze0clLmLOUaAHrKej06i")
         .then(response =>{
             this.setState({
-                meteors: response.data.near_earth_objects
+                meteors: response.data().near_earth_objects
             })
         })
 
@@ -43,7 +43,7 @@ export default class MeteorScreen extends Component {
 
 
     render() {
-        if(Object.keys(this.state.meteors).length == 0){
+        if(Object.keys(this.state.meteors).length === 0){
             return (
                 <View
                     style={{
